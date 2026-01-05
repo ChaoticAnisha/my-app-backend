@@ -5,6 +5,7 @@ export const hashPassword = async (plain: string): Promise<string> => {
   const salt = await bcrypt.genSalt(ENV.BCRYPT_SALT_ROUNDS);
   return bcrypt.hash(plain, salt);
 };
+// Compare a plain text password with a hashed password
 export const comparePassword = async (plain: string, hash: string): Promise<boolean> => {
   return bcrypt.compare(plain, hash);
 };
