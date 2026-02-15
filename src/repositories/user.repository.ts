@@ -14,7 +14,6 @@ export class UserRepository {
     return UserModel.findById(id);
   }
 
-  // 🔑 New: login helper
   async login(email: string) {
     return UserModel.findOne({ email });
   }
