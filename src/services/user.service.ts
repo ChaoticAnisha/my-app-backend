@@ -10,6 +10,7 @@ export class UserService {
     const exists = await this.repo.findByEmail(data.email);
     if (exists) throw new ApiError(409, "User already exists");
 
+    // Hash password before saving
     const hashedPassword = await bcrypt.hash(data.password, 10);
     return this.repo.create({ ...data, password: hashedPassword });
   }
