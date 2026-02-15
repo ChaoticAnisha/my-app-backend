@@ -1,19 +1,21 @@
-import { UserModel, IUser } from '../models/user.model';
-import { IUserRepository } from './interfaces/user.repository';
+import { UserModel } from "../models/user.model";
+import { CreateUserDTO } from "../dtos/user.dto";
 
-export class UserRepository implements IUserRepository {
-  async createUser(data: Pick<IUser, 'email' | 'password' | 'role'>): Promise<IUser> {
-    const user = new UserModel(data);
-    return user.save();
+export class UserRepository {
+  create(data: CreateUserDTO) {
+    return UserModel.create(data);
   }
 
-  async findByEmail(email: string): Promise<IUser | null> {
+  findByEmail(email: string) {
     return UserModel.findOne({ email });
   }
 
-  async findById(id: string): Promise<IUser | null> {
+  findById(id: string) {
     return UserModel.findById(id);
   }
-}
 
-export const userRepository = new UserRepository();
+  // 🔑 New: login helper
+  async login(email: string) {
+    return UserModel.findOne({ email });
+  }
+}

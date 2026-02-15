@@ -1,12 +1,11 @@
-import app from './app';
-import { connectDB } from './config/db';
-import { ENV } from './config/env';
+import "./config/env";
+import app from "./app";
+import { connectDB } from "./config/database";
 
-const start = async () => {
-  await connectDB();
-  app.listen(ENV.PORT, () => {
-    console.log(`Server running on port ${ENV.PORT}`);
+const PORT = process.env.PORT || 5000;
+
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
   });
-};
-
-start();
+});
