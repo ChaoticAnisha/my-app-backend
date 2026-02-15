@@ -23,7 +23,6 @@ export class UserService {
     return user.save();
   }
 
-  // 🔑 New: login
   async login(email: string, password: string) {
     const user = await this.repo.login(email);
     if (!user) throw new ApiError(401, "Invalid credentials");
