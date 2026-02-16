@@ -2,27 +2,27 @@ import { UserModel, UserDocument } from "../models/user.model";
 import { CreateUserDTO, UpdateUserDTO } from "../dtos/user.dto";
 
 export class UserRepository {
-  // ✅ Create User
+  // Create User
   async create(data: CreateUserDTO): Promise<UserDocument> {
     return UserModel.create(data);
   }
 
-  // ✅ Find by Email
+  // Find by Email
   async findByEmail(email: string): Promise<UserDocument | null> {
     return UserModel.findOne({ email });
   }
 
-  // ✅ Find by ID
+  // Find by ID
   async findById(id: string): Promise<UserDocument | null> {
     return UserModel.findById(id);
   }
 
-  // ✅ Login (Find by Email)
+  // Login (Find by Email)
   async login(email: string): Promise<UserDocument | null> {
     return UserModel.findOne({ email });
   }
 
-  // ✅ Get All Users (with pagination and search)
+  // Get All Users (with pagination and search)
   async findAll(page: number, limit: number, search: string) {
     const skip = (page - 1) * limit;
     
