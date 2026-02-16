@@ -8,12 +8,15 @@ export const createUser = async (req: Request, res: Response, next: NextFunction
   try {
     const parsed = CreateUserSchema.parse(req.body);
     const user = await service.createUser(parsed);
+    
     res.status(201).json({ 
       success: true, 
       user: {
         id: user._id,
-        email: user.email,
         name: user.name,
+        email: user.email,
+        phone: user.phone,        // ✅ ADDED
+        address: user.address,    // ✅ ADDED
         role: user.role
       }
     });
@@ -35,7 +38,6 @@ export const uploadAvatar = async (req: Request, res: Response, next: NextFuncti
   }
 };
 
-// 🔑 Login controller - UPDATED
 export const loginUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const parsed = LoginUserSchema.parse(req.body);
@@ -45,8 +47,10 @@ export const loginUser = async (req: Request, res: Response, next: NextFunction)
       success: true, 
       data: {
         id: user._id,
-        email: user.email,
         name: user.name,
+        email: user.email,
+        phone: user.phone,        // ✅ ADDED
+        address: user.address,    // ✅ ADDED
         role: user.role
       }
     });
