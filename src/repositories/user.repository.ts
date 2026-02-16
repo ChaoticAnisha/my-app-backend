@@ -50,7 +50,7 @@ export class UserRepository {
     return { users, total };
   }
 
-  // ✅ Update User
+  // Update User
   async update(id: string, data: UpdateUserDTO): Promise<UserDocument | null> {
     return UserModel.findByIdAndUpdate(
       id,
@@ -59,7 +59,7 @@ export class UserRepository {
     );
   }
 
-  // ✅ Delete User
+  // Delete User
   async delete(id: string): Promise<UserDocument | null> {
     return UserModel.findByIdAndDelete(id);
   }
