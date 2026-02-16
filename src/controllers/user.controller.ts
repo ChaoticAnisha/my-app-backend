@@ -4,7 +4,7 @@ import { CreateUserSchema, LoginUserSchema, UpdateUserSchema } from "../dtos/use
 
 const service = new UserService();
 
-// ✅ Create User (Registration)
+// Create User (Registration)
 export const createUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const parsed = CreateUserSchema.parse(req.body);
@@ -26,7 +26,7 @@ export const createUser = async (req: Request, res: Response, next: NextFunction
   }
 };
 
-// ✅ Login User
+// Login User
 export const loginUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const parsed = LoginUserSchema.parse(req.body);
@@ -103,7 +103,7 @@ export const getUserById = async (req: Request, res: Response, next: NextFunctio
   }
 };
 
-// ✅ Update User
+// Update User
 export const updateUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const parsed = UpdateUserSchema.parse(req.body);
@@ -147,7 +147,7 @@ export const deleteUser = async (req: Request, res: Response, next: NextFunction
   }
 };
 
-// ✅ Upload Avatar
+//  Upload Avatar
 export const uploadAvatar = async (req: Request, res: Response, next: NextFunction) => {
   try {
     if (!req.file) {
