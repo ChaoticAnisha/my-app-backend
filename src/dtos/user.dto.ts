@@ -12,7 +12,6 @@ export const CreateUserSchema = z.object({
 
 export type CreateUserDTO = z.infer<typeof CreateUserSchema>;
 
-// 🔑 New: Login DTO
 export const LoginUserSchema = z.object({
   email: z.string().email(),
   password: z.string().min(6),
