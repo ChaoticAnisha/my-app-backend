@@ -16,7 +16,7 @@ app.use(cors({
 
 app.use(express.json());
 
-// ✅ Serve uploaded files
+// Serve uploaded files
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
 // Routes
