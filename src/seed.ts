@@ -454,21 +454,21 @@ async function seed() {
     console.log(`✅ Inserted ${insertedCategories.length} categories:`);
     insertedCategories.forEach(c => console.log(`   - ${c.name}`));
 
-    // ✅ Insert Products
-    console.log("\n🛍️  Inserting products...");
+    //  Insert Products
+    console.log("\n  Inserting products...");
     const insertedProducts = await ProductModel.insertMany(products);
-    console.log(`✅ Inserted ${insertedProducts.length} products:`);
+    console.log(` Inserted ${insertedProducts.length} products:`);
     insertedProducts.forEach(p => console.log(`   - ${p.name} (${p.category}) ₹${p.price}`));
 
-    console.log("\n🎉 ========================");
+    console.log("\n ========================");
     console.log("   SEED COMPLETED!");
     console.log("========================");
-    console.log(`📊 Categories: ${insertedCategories.length}`);
-    console.log(`📊 Products:   ${insertedProducts.length}`);
+    console.log(`Categories: ${insertedCategories.length}`);
+    console.log(`Products:   ${insertedProducts.length}`);
     console.log("========================\n");
 
     await mongoose.disconnect();
-    console.log("✅ Disconnected from MongoDB");
+    console.log("Disconnected from MongoDB");
     process.exit(0);
   } catch (error: any) {
     console.error("\n❌ Seed failed:", error.message);
