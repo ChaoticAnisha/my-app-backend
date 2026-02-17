@@ -1,0 +1,17 @@
+import { z } from "zod";
+
+export const CreateCategorySchema = z.object({
+  name: z.string().min(2),
+  image: z.string(),
+  description: z.string().optional(),
+});
+
+export type CreateCategoryDTO = z.infer<typeof CreateCategorySchema>;
+
+export const UpdateCategorySchema = z.object({
+  name: z.string().min(2).optional(),
+  image: z.string().optional(),
+  description: z.string().optional(),
+});
+
+export type UpdateCategoryDTO = z.infer<typeof UpdateCategorySchema>;

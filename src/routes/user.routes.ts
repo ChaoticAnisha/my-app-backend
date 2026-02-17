@@ -1,13 +1,15 @@
 import express from "express";
 import { 
   createUser, 
-  loginUser, 
-  getAllUsers, 
-  getUserById, 
-  updateUser, 
-  deleteUser, 
-  uploadAvatar 
+  loginUser,
+  getDashboardStats,
+  getAllUsers,
+  getUserById,
+  updateUser,
+  deleteUser,
+  uploadAvatar
 } from "../controllers/user.controller";
+import { uploadAvatar as uploadAvatarMiddleware } from "../middlewares/upload.middleware";
 
 const router = express.Router();
 
@@ -15,13 +17,14 @@ const router = express.Router();
 router.post("/register", createUser);
 router.post("/login", loginUser);
 
-// User CRUD Routes
-router.get("/", getAllUsers);           // Get all users
-router.get("/:id", getUserById);        // Get single user
-router.put("/:id", updateUser);         // Update user
-router.delete("/:id", deleteUser);      // Delete user
+// ✅ Dashboard Stats
+router.get("/stats/dashboard", getDashboardStats);
 
-// Avatar Upload
-router.post("/:id/avatar", uploadAvatar);
+// User CRUD Routes
+router.get("/", getAllUsers);
+router.get("/:id", getUserById);
+router.put("/:id", updateUser);
+router.delete("/:id", deleteUser);
+router.post("/:id/avatar", uploadAvatarMiddleware.single("avatar"), uploadAvatar);
 
 export default router;
