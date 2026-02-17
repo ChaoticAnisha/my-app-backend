@@ -4,13 +4,13 @@ import { CategoryModel } from "./models/category.model";
 import * as dotenv from "dotenv";
 import path from "path";
 
-// ✅ Load .env from backend root
+//  Load .env from backend root
 dotenv.config({ path: path.join(__dirname, "../.env") });
 
 const MONGO_URI = process.env.MONGO_URI as string;
 
 if (!MONGO_URI) {
-  console.error("❌ MONGO_URI not found in .env file");
+  console.error(" MONGO_URI not found in .env file");
   process.exit(1);
 }
 
@@ -446,7 +446,7 @@ async function seed() {
     console.log("\n Clearing existing data...");
     await CategoryModel.deleteMany({});
     await ProductModel.deleteMany({});
-    console.log("✅ Cleared existing categories and products");
+    console.log(" Cleared existing categories and products");
 
     // Insert Categories
     console.log("\n📦 Inserting categories...");
