@@ -10,7 +10,7 @@ import {
 const router = express.Router();
 
 // Category CRUD
-router.post("/", createCategory);             // Create category
+router.post("/", createCategory);             
 router.get("/", getAllCategories);            // Get all categories
 router.get("/:id", getCategoryById);          // Get single category
 router.put("/:id", updateCategory);           // Update category
