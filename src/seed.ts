@@ -436,19 +436,19 @@ const products = [
 ];
 async function seed() {
   try {
-    console.log("🔄 Connecting to MongoDB Atlas...");
-    console.log("📡 URI:", MONGO_URI.substring(0, 40) + "...");
+    console.log("Connecting to MongoDB Atlas...");
+    console.log(" URI:", MONGO_URI.substring(0, 40) + "...");
 
     await mongoose.connect(MONGO_URI);
-    console.log("✅ Connected to MongoDB Atlas!");
+    console.log("Connected to MongoDB Atlas!");
 
-    // ✅ Clear existing
-    console.log("\n🗑️  Clearing existing data...");
+    // Clear existing
+    console.log("\n Clearing existing data...");
     await CategoryModel.deleteMany({});
     await ProductModel.deleteMany({});
     console.log("✅ Cleared existing categories and products");
 
-    // ✅ Insert Categories
+    // Insert Categories
     console.log("\n📦 Inserting categories...");
     const insertedCategories = await CategoryModel.insertMany(categories);
     console.log(`Inserted ${insertedCategories.length} categories:`);
