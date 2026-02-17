@@ -8,7 +8,7 @@ import { errorHandler } from "./errors/errorHandler";
 
 const app = express();
 
-// ✅ CORS - Allow frontend to access backend
+// CORS - Allow frontend to access backend
 app.use(cors({
   origin: 'http://localhost:3000',
   credentials: true
