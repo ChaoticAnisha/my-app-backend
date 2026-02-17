@@ -451,7 +451,7 @@ async function seed() {
     // ✅ Insert Categories
     console.log("\n📦 Inserting categories...");
     const insertedCategories = await CategoryModel.insertMany(categories);
-    console.log(`✅ Inserted ${insertedCategories.length} categories:`);
+    console.log(`Inserted ${insertedCategories.length} categories:`);
     insertedCategories.forEach(c => console.log(`   - ${c.name}`));
 
     //  Insert Products
