@@ -17,7 +17,7 @@ const router = express.Router();
 router.post("/register", createUser);
 router.post("/login", loginUser);
 
-// ✅ Dashboard Stats
+// Dashboard Stats
 router.get("/stats/dashboard", getDashboardStats);
 
 // User CRUD Routes
@@ -25,6 +25,8 @@ router.get("/", getAllUsers);
 router.get("/:id", getUserById);
 router.put("/:id", updateUser);
 router.delete("/:id", deleteUser);
+
+// Avatar Upload
 router.post("/:id/avatar", uploadAvatarMiddleware.single("avatar"), uploadAvatar);
 
 export default router;

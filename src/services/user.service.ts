@@ -66,10 +66,9 @@ export class UserService {
   }
 
   // ✅ Upload Avatar
-  async uploadAvatar(userId: string, path: string) {
-    const user = await this.repo.findById(userId);
-    if (!user) throw new ApiError(404, "User not found");
-    user.avatar = path;
-    return user.save();
-  }
+async uploadAvatar(userId: string, avatarPath: string) {
+  const user = await this.repo.update(userId, { avatar: avatarPath });
+  if (!user) throw new ApiError(404, "User not found");
+  return user;
+}
 }

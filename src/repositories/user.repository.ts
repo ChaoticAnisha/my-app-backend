@@ -13,9 +13,9 @@ export class UserRepository {
   }
 
   // Find by ID
-  async findById(id: string): Promise<UserDocument | null> {
-    return UserModel.findById(id);
-  }
+  async findById(id: string) {
+  return await UserModel.findById(id).select('-password');
+}
 
   // Login (Find by Email)
   async login(email: string): Promise<UserDocument | null> {
