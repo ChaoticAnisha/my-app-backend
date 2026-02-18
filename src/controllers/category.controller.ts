@@ -99,7 +99,7 @@ export const updateCategory = async (req: Request, res: Response, next: NextFunc
   }
 };
 
-// ✅ Delete Category
+// Delete Category
 export const deleteCategory = async (req: Request, res: Response, next: NextFunction) => {
   try {
     await service.deleteCategory(req.params.id);
