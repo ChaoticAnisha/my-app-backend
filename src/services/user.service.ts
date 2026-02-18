@@ -65,7 +65,7 @@ export class UserService {
     return this.repo.delete(userId);
   }
 
-  // ✅ Upload Avatar
+  // Upload Avatar
 async uploadAvatar(userId: string, avatarPath: string) {
   const user = await this.repo.update(userId, { avatar: avatarPath });
   if (!user) throw new ApiError(404, "User not found");
