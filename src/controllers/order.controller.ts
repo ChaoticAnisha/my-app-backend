@@ -4,7 +4,7 @@ import { CreateOrderSchema, UpdateOrderStatusSchema } from "../dtos/order.dto";
 
 const service = new OrderService();
 
-// ✅ Create Order (Client)
+//  Create Order (Client)
 export const createOrder = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const userId = req.body.userId;
@@ -25,7 +25,7 @@ export const createOrder = async (req: Request, res: Response, next: NextFunctio
   }
 };
 
-// ✅ Get All Orders (Admin)
+// Get All Orders (Admin)
 export const getAllOrders = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const page = parseInt(req.query.page as string) || 1;
@@ -49,7 +49,7 @@ export const getAllOrders = async (req: Request, res: Response, next: NextFuncti
   }
 };
 
-// ✅ Get User Orders (Client)
+// Get User Orders (Client)
 export const getUserOrders = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { userId } = req.params;
@@ -73,7 +73,7 @@ export const getUserOrders = async (req: Request, res: Response, next: NextFunct
   }
 };
 
-// ✅ Get Single Order
+// Get Single Order
 export const getOrderById = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const order = await service.getOrderById(req.params.id);
@@ -86,7 +86,7 @@ export const getOrderById = async (req: Request, res: Response, next: NextFuncti
   }
 };
 
-// ✅ Update Order Status (Admin)
+// Update Order Status (Admin)
 export const updateOrderStatus = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const parsed = UpdateOrderStatusSchema.parse(req.body);
