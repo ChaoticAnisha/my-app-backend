@@ -57,7 +57,7 @@ export class UserService {
     return this.repo.update(userId, data);
   }
 
-  // ✅ Delete User
+  // Delete User
   async deleteUser(userId: string) {
     const user = await this.repo.findById(userId);
     if (!user) throw new ApiError(404, "User not found");
