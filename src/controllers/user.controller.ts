@@ -51,7 +51,7 @@ export const loginUser = async (req: Request, res: Response, next: NextFunction)
   }
 };
 
-// ✅ Get Dashboard Stats
+// Get Dashboard Stats
 export const getDashboardStats = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { OrderModel } = await import("../models/order.model");
@@ -207,7 +207,7 @@ export const deleteUser = async (req: Request, res: Response, next: NextFunction
   }
 };
 
-// ✅ Upload Avatar
+// Upload Avatar
 export const uploadAvatar = async (req: Request, res: Response, next: NextFunction) => {
   try {
     if (!req.file) {
