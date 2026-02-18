@@ -69,7 +69,7 @@ export const getCategoryById = async (req: Request, res: Response, next: NextFun
   }
 };
 
-// ✅ Update Category
+// Update Category
 export const updateCategory = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const parsed = UpdateCategorySchema.parse(req.body);
