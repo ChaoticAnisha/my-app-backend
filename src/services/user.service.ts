@@ -15,7 +15,7 @@ export class UserService {
     return this.repo.create({ ...data, password: hashedPassword });
   }
 
-  // ✅ Login
+  // login
   async login(email: string, password: string) {
     const user = await this.repo.login(email);
     if (!user) throw new ApiError(401, "Invalid credentials");
@@ -26,7 +26,7 @@ export class UserService {
     return user;
   }
 
-  // ✅ Get All Users (with pagination and search)
+  // Get All Users (with pagination and search)
   async getAllUsers(page: number, limit: number, search: string) {
     return this.repo.findAll(page, limit, search);
   }
