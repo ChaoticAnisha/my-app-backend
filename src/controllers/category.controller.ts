@@ -4,7 +4,7 @@ import { CreateCategorySchema, UpdateCategorySchema } from "../dtos/category.dto
 
 const service = new CategoryService();
 
-// ✅ Create Category
+// Create Category
 export const createCategory = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const parsed = CreateCategorySchema.parse(req.body);
@@ -27,7 +27,7 @@ export const createCategory = async (req: Request, res: Response, next: NextFunc
   }
 };
 
-// ✅ Get All Categories
+// Get All Categories
 export const getAllCategories = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const categories = await service.getAllCategories();
@@ -41,7 +41,7 @@ export const getAllCategories = async (req: Request, res: Response, next: NextFu
   }
 };
 
-// ✅ Get Category by ID
+// Get Category by ID
 export const getCategoryById = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const category = await service.getCategoryById(req.params.id);
