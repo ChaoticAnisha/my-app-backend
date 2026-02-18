@@ -31,14 +31,14 @@ export class UserService {
     return this.repo.findAll(page, limit, search);
   }
 
-  // ✅ Get User by ID
+  // Get User by ID
   async getUserById(userId: string) {
     const user = await this.repo.findById(userId);
     if (!user) throw new ApiError(404, "User not found");
     return user;
   }
 
-  // ✅ Update User
+  // Update User
   async updateUser(userId: string, data: UpdateUserDTO) {
     const user = await this.repo.findById(userId);
     if (!user) throw new ApiError(404, "User not found");
