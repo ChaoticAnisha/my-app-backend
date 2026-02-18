@@ -4,7 +4,7 @@ import { CreateProductSchema, UpdateProductSchema } from "../dtos/product.dto";
 
 const service = new ProductService();
 
-// ✅ Create Product
+//  Create Product
 export const createProduct = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // Handle image upload
@@ -46,7 +46,7 @@ export const createProduct = async (req: Request, res: Response, next: NextFunct
   }
 };
 
-// ✅ Get All Products
+// Get All Products
 export const getAllProducts = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const page = parseInt(req.query.page as string) || 1;
@@ -71,7 +71,7 @@ export const getAllProducts = async (req: Request, res: Response, next: NextFunc
   }
 };
 
-// ✅ Get Product by ID
+// Get Product by ID
 export const getProductById = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const product = await service.getProductById(req.params.id);
@@ -104,7 +104,7 @@ export const getProductById = async (req: Request, res: Response, next: NextFunc
   }
 };
 
-// ✅ Update Product
+// Update Product
 export const updateProduct = async (req: Request, res: Response, next: NextFunction) => {
   try {
     let imagePath = req.body.image || '';
@@ -154,7 +154,7 @@ export const updateProduct = async (req: Request, res: Response, next: NextFunct
   }
 };
 
-// ✅ Delete Product
+// Delete Product
 export const deleteProduct = async (req: Request, res: Response, next: NextFunction) => {
   try {
     await service.deleteProduct(req.params.id);
@@ -168,7 +168,7 @@ export const deleteProduct = async (req: Request, res: Response, next: NextFunct
   }
 };
 
-// ✅ Update Stock
+// Update Stock
 export const updateStock = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { quantity } = req.body;
