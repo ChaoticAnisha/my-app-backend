@@ -6,7 +6,7 @@ import { ApiError } from "../errors/ApiError";
 export class UserService {
   private repo = new UserRepository();
 
-  // ✅ Create User
+  // Create User
   async createUser(data: CreateUserDTO) {
     const exists = await this.repo.findByEmail(data.email);
     if (exists) throw new ApiError(409, "User already exists");
