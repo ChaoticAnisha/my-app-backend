@@ -14,13 +14,23 @@ if (!fs.existsSync(productUploadDir)) {
   fs.mkdirSync(productUploadDir, { recursive: true });
 }
 
-// ✅ Avatar Storage
+// ✅ Avatar Storage (for user profile updates)
 const avatarStorage = multer.diskStorage({
   destination: (_, __, cb) => cb(null, uploadDir),
   filename: (req, file, cb) => {
     const userId = req.params.id;
     const ext = path.extname(file.originalname);
     cb(null, `avatar_${userId}${ext}`);
+  },
+});
+
+// ✅ General Avatar Storage (for admin user creation/update)
+const generalAvatarStorage = multer.diskStorage({
+  destination: (_, __, cb) => cb(null, uploadDir),
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const ext = path.extname(file.originalname);
+    cb(null, `avatar_${uniqueSuffix}${ext}`);
   },
 });
 
@@ -43,7 +53,7 @@ const fileFilter: multer.Options["fileFilter"] = (_, file, cb) => {
   }
 };
 
-// ✅ Export both upload handlers
+// ✅ Export upload handlers
 export const uploadAvatar = multer({ 
   storage: avatarStorage, 
   fileFilter,
@@ -54,4 +64,11 @@ export const uploadProductImage = multer({
   storage: productStorage, 
   fileFilter,
   limits: { fileSize: 10 * 1024 * 1024 } // 10MB limit
+});
+
+// ✅ General upload for admin user management (new/update users)
+export const upload = multer({ 
+  storage: generalAvatarStorage, 
+  fileFilter,
+  limits: { fileSize: 5 * 1024 * 1024 } // 5MB limit
 });

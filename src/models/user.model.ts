@@ -9,6 +9,8 @@ export interface IUser {
   address?: string;
   phone?: string;
   avatar?: string;
+  resetPasswordToken?: string;  // ✅ Add this
+  resetPasswordExpires?: Date;  // ✅ Add this
   createdAt: Date;
   updatedAt: Date;
 }
@@ -28,7 +30,10 @@ const UserSchema = new Schema<UserDocument>(
     address: String,
     phone: String,
     avatar: String,
+    resetPasswordToken: { type: String },
+    resetPasswordExpires: { type: Date },
   },
   { timestamps: true }
 );
+
 export const UserModel = mongoose.model<UserDocument>("User", UserSchema);
