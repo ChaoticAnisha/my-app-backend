@@ -53,7 +53,7 @@ const fileFilter: multer.Options["fileFilter"] = (_, file, cb) => {
   }
 };
 
-// ✅ Export upload handlers
+// Export upload handlers
 export const uploadAvatar = multer({ 
   storage: avatarStorage, 
   fileFilter,
@@ -66,7 +66,7 @@ export const uploadProductImage = multer({
   limits: { fileSize: 10 * 1024 * 1024 } // 10MB limit
 });
 
-// ✅ General upload for admin user management (new/update users)
+// General upload for admin user management (new/update users)
 export const upload = multer({ 
   storage: generalAvatarStorage, 
   fileFilter,

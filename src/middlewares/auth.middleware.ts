@@ -14,11 +14,11 @@ declare global {
   }
 }
 
-// Mock authentication middleware (since you're using cookies on frontend)
+// Mock authentication middleware 
 // This extracts user info from request headers/cookies
 export const authenticate = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    // For now, we'll check if userId is passed in headers (you can improve this with JWT)
+    // For now, we'll check if userId is passed in headers 
     const userId = req.headers['x-user-id'] as string;
     const userRole = req.headers['x-user-role'] as string;
     const userEmail = req.headers['x-user-email'] as string;
