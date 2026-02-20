@@ -7,14 +7,14 @@ const service = new UserService();
 // Create User (Admin) with optional avatar
 export const createUserAdmin = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    console.log('📝 Admin creating user');
+    console.log('Admin creating user');
     console.log('Body:', req.body);
     console.log('File:', req.file);
     console.log('Content-Type:', req.headers['content-type']);
     
     // Check if we have multipart form data
     if (!req.headers['content-type']?.includes('multipart/form-data')) {
-      console.warn('⚠️ Not multipart/form-data!');
+      console.warn('Not multipart/form-data!');
     }
 
     const parsed = CreateUserSchema.parse(req.body);
@@ -25,10 +25,10 @@ export const createUserAdmin = async (req: Request, res: Response, next: NextFun
     };
     
     if (req.file) {
-      console.log('✅ File found! Filename:', req.file.filename);
+      console.log('File found! Filename:', req.file.filename);
       userData.avatar = `/uploads/${req.file.filename}`;
     } else {
-      console.log('❌ No file uploaded');
+      console.log('No file uploaded');
     }
 
     const user = await service.createUser(userData);
@@ -47,7 +47,7 @@ export const createUserAdmin = async (req: Request, res: Response, next: NextFun
       }
     });
   } catch (err) {
-    console.error('❌ Error creating user:', err);
+    console.error('Error creating user:', err);
     next(err);
   }
 };
