@@ -2,19 +2,19 @@ import multer from "multer";
 import path from "path";
 import fs from "fs";
 
-// ✅ Create uploads directory if it doesn't exist
+// Create uploads directory if it doesn't exist
 const uploadDir = path.join(process.cwd(), "uploads");
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
 
-// ✅ Create products upload directory
+// Create products upload directory
 const productUploadDir = path.join(process.cwd(), "uploads", "products");
 if (!fs.existsSync(productUploadDir)) {
   fs.mkdirSync(productUploadDir, { recursive: true });
 }
 
-// ✅ Avatar Storage (for user profile updates)
+// Avatar Storage (for user profile updates)
 const avatarStorage = multer.diskStorage({
   destination: (_, __, cb) => cb(null, uploadDir),
   filename: (req, file, cb) => {
@@ -24,7 +24,7 @@ const avatarStorage = multer.diskStorage({
   },
 });
 
-// ✅ General Avatar Storage (for admin user creation/update)
+// General Avatar Storage (for admin user creation/update)
 const generalAvatarStorage = multer.diskStorage({
   destination: (_, __, cb) => cb(null, uploadDir),
   filename: (req, file, cb) => {
@@ -34,7 +34,7 @@ const generalAvatarStorage = multer.diskStorage({
   },
 });
 
-// ✅ Product Image Storage
+// Product Image Storage
 const productStorage = multer.diskStorage({
   destination: (_, __, cb) => cb(null, productUploadDir),
   filename: (req, file, cb) => {
@@ -44,7 +44,7 @@ const productStorage = multer.diskStorage({
   },
 });
 
-// ✅ File filter
+// File filter
 const fileFilter: multer.Options["fileFilter"] = (_, file, cb) => {
   if (!file.mimetype.startsWith("image/")) {
     cb(new Error("Only image files allowed"));
