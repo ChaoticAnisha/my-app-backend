@@ -110,13 +110,24 @@ export const updateUserAdmin = async (req: Request, res: Response, next: NextFun
 
     const parsed = UpdateUserSchema.parse(req.body);
     
-    // Add avatar path if file uploaded
-    const updateData = {
+    const updateData: any = {
       ...parsed,
-      avatar: req.file ? `/uploads/${req.file.filename}` : undefined
     };
 
+    // ADD AVATAR PATH IF FILE UPLOADED
+    if (req.file) {
+      updateData.avatar = `/uploads/${req.file.filename}`;
+      console.log('✅ Avatar path set:', updateData.avatar);
+    }
+
     const user = await service.updateUser(req.params.id, updateData);
+    
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found"
+      });
+    }
     
     res.json({
       success: true,
@@ -128,7 +139,7 @@ export const updateUserAdmin = async (req: Request, res: Response, next: NextFun
         phone: user.phone,
         address: user.address,
         role: user.role,
-        avatar: user.avatar
+        avatar: user.avatar  // INCLUDE AVATAR IN RESPONSE
       }
     });
   } catch (err) {

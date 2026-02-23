@@ -1,6 +1,6 @@
-import express from "express";
+import express, { Request, Response, NextFunction } from "express";
 import { authenticate, isAdmin } from "../middlewares/auth.middleware";
-import { upload } from "../middlewares/upload.middleware";
+import { avatarUpload, optimizeUploadedImage } from "../config/multer.config";
 import {
   createUserAdmin,
   getAllUsersAdmin,
@@ -11,15 +11,48 @@ import {
 
 const router = express.Router();
 
-// All routes require authentication and admin role
-router.use(authenticate);
-router.use(isAdmin);
+// Multer error handler
+const handleMulterError = (err: any, req: Request, res: Response, next: NextFunction) => {
+  if (err) {
+    console.error("❌ Multer error:", err);
+    return res.status(400).json({ success: false, message: err.message });
+  }
+  next();
+};
 
-// Admin User Routes - IMPORTANT: upload.single() must be BEFORE the controller
-router.post("/", upload.single('avatar'), createUserAdmin);  // ✅ Correct order
-router.get("/", getAllUsersAdmin);
-router.get("/:id", getUserByIdAdmin);
-router.put("/:id", upload.single('avatar'), updateUserAdmin);  // ✅ Correct order
-router.delete("/:id", deleteUserAdmin);
+// Normalize files middleware
+const normalizeFiles = (req: Request, res: Response, next: NextFunction) => {
+  if (req.files && Array.isArray(req.files) && req.files.length > 0) {
+    req.file = req.files[0];
+    console.log('✅ File normalized:', req.file.filename);
+  }
+  next();
+};
+
+// Admin User Routes
+router.post("/", 
+  avatarUpload.any(),
+  handleMulterError,
+  normalizeFiles,
+  optimizeUploadedImage,
+  authenticate,
+  isAdmin,
+  createUserAdmin
+);
+
+router.get("/", authenticate, isAdmin, getAllUsersAdmin);
+router.get("/:id", authenticate, isAdmin, getUserByIdAdmin);
+
+router.put("/:id", 
+  avatarUpload.any(),
+  handleMulterError,
+  normalizeFiles,
+  optimizeUploadedImage,
+  authenticate,
+  isAdmin,
+  updateUserAdmin
+);
+
+router.delete("/:id", authenticate, isAdmin, deleteUserAdmin);
 
 export default router;
