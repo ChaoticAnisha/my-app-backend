@@ -70,12 +70,12 @@ export class UserService {
 
   // Upload Avatar
   async uploadAvatar(userId: string, avatarPath: string) {
-    const user = await this.repo.update(userId, { avatar: avatarPath });
+    const user = await this.repo.update(userId, { avatar: avatarPath } as any);
     if (!user) throw new ApiError(404, "User not found");
     return user;
   }
 
-  // ✅ Forgot Password
+  // Forgot Password
   async forgotPassword(email: string) {
     const user = await this.repo.findByEmail(email);
     if (!user) {

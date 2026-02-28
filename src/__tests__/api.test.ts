@@ -471,7 +471,8 @@ describe('QuickCart API Integration Tests', () => {
           price: 1000
         }],
         totalAmount: 2000,
-        deliveryAddress: 'Test Address'
+        deliveryAddress: 'Test Address',
+        paymentMethod: 'cash'
       };
 
       const order = await OrderModel.create(orderData);
@@ -494,7 +495,8 @@ describe('QuickCart API Integration Tests', () => {
           price: 1000 
         }],
         totalAmount: 1000,
-        deliveryAddress: 'Address'
+        deliveryAddress: 'Address',
+        paymentMethod: 'cash'
       });
 
       const orders = await OrderModel.find({ userId });
@@ -517,7 +519,8 @@ describe('QuickCart API Integration Tests', () => {
             price: 1000 
           }], 
           totalAmount: 1000, 
-          deliveryAddress: 'A1' 
+          deliveryAddress: 'A1',
+          paymentMethod: 'cash' 
         },
         { 
           userId, 
@@ -529,7 +532,8 @@ describe('QuickCart API Integration Tests', () => {
             price: 1000 
           }], 
           totalAmount: 2000, 
-          deliveryAddress: 'A2' 
+          deliveryAddress: 'A2', 
+          paymentMethod: 'cash'
         }
       ]);
 
@@ -598,7 +602,8 @@ describe('QuickCart API Integration Tests', () => {
         userId: user._id,
         items: [],
         totalAmount: 100,
-        deliveryAddress: 'Address'
+        deliveryAddress: 'Address',
+        paymentMethod: 'cash'
       });
 
       const stats = {
