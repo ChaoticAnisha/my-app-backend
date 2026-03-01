@@ -547,15 +547,16 @@ describe('QuickCart API Integration Tests', () => {
       
       const order = await OrderModel.create({
         userId,
-        items: [{ 
-          productId, 
+        items: [{
+          productId,
           name: 'Product',
           image: '/images/p.png',
-          quantity: 1, 
-          price: 1000 
+          quantity: 1,
+          price: 1000
         }],
         totalAmount: 1000,
         deliveryAddress: 'Address',
+        paymentMethod: 'cash',
         status: 'pending'
       });
 
